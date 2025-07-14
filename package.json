@@ -1,0 +1,31 @@
+{
+  "name": "vexa",
+  "version": "0.1.0",
+  "description": "A minimalist and expressive web framework for Node.js, inspired by Express, but lighter and more elegant.",
+  "main": "index.js",
+  "type": "commonjs",
+  "keywords": [
+    "framework",
+    "http",
+    "express",
+    "router",
+    "middleware",
+    "nodejs",
+    "web",
+    "vexa"
+  ],
+  "scripts": {
+    "start": "node example/server.js",
+    "test": "echo \"No tests yet\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/zest-lang/vexa.git"
+  },
+  "bugs": {
+    "url": "https://github.com/seu-usuario/vexa/issues"
+  },
+  "homepage": "https://github.com/zest-lang/vexa#readme",
+  "author": "AFK2-TEAM",
+  "license": "MIT"
+}
