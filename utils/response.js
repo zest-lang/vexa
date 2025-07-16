@@ -1,3 +1,6 @@
+const fs = require('fs')
+const path = require('path')
+
 function extendResponse(res) {
   res.send = function (body) {
     if (typeof body === 'object') {
@@ -16,6 +19,26 @@ function extendResponse(res) {
   res.status = function (code) {
     this.statusCode = code
     return this
+  }
+
+  res.redirect = function (url) {
+    this.statusCode = 302
+    this.setHeader('Location', url)
+    this.end()
+  }
+
+  res.sendFile = function (filePath) {
+    const absolutePath = path.resolve(filePath)
+    const stream = fs.createReadStream(absolutePath)
+
+    stream.on('open', () => {
+      stream.pipe(res)
+    })
+
+    stream.on('error', (err) => {
+      this.statusCode = 404
+      this.end('File not found')
+    })
   }
 }
 

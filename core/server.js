@@ -28,6 +28,16 @@ class Vexa {
     return this
   }
 
+  put(path, handler) {
+    addRoute('PUT', path, handler)
+    return this
+  }
+
+  delete(path, handler) {
+    addRoute('DELETE', path, handler)
+    return this
+  }
+
   async handleRequest(req, res) {
     extendRequest(req)
     extendResponse(res)
@@ -41,14 +51,13 @@ class Vexa {
 
     await next()
 
-    const matched = matchRoute(req.method, req.path)
+    const matched = matchRoute(req.method, req.url)
     if (!matched) {
       res.statusCode = 404
       return res.end('Not Found')
     }
 
     req.params = matched.params || {}
-
     await runHandler(matched.handler, req, res)
   }
 

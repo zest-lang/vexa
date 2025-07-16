@@ -13,22 +13,24 @@
 ### 🚀 Installation
 
 ```bash
-npm install vexa
+npm install vexa-http
 ```
 
 ---
 
-### 🧪 Usage example
+### 🧪 Basic usage example
 
 ```js
-const vexa = require('vexa')
+const vexa = require('vexa-http')
 const app = vexa()
 
+// Middleware
 app.use((req, res, next) => {
   console.log(`${req.method} ${req.url}`)
   next()
 })
 
+// Basic routes
 app.get('/user/:id', (req, res) => {
   res.json({ userId: req.params.id, query: req.query })
 })
@@ -37,6 +39,27 @@ app.post('/user', (req, res) => {
   res.json({ received: req.body })
 })
 
+// File download
+app.get('/download', (req, res) => {
+  res.sendFile('./large-file.zip') // Streams the file!
+})
+
+// Redirect
+app.get('/old-route', (req, res) => {
+  res.redirect('/new-route') // 302 Redirect
+})
+
+// PUT method
+app.put('/user/:id', (req, res) => {
+  res.json({ updated: req.params.id })
+})
+
+// DELETE method
+app.delete('/user/:id', (req, res) => {
+  res.status(204).end()
+})
+
+// Start server
 app.start(3000, () => {
   console.log('Vexa server running on port 3000')
 })
@@ -44,19 +67,42 @@ app.start(3000, () => {
 
 ---
 
-### 🔌 Resources
+### 📦 Router example
 
-- ✅ Lightweight and flexible middleware
+```js
+const vexa = require('vexa-http')
+const { Router } = vexa
+const app = vexa()
 
-- ✅ Support for routes with parameters (`/user/:id`)
+const userRouter = Router()
 
-- ✅ `req.query`, `req.params` e `req.body`
+userRouter.get('/profile', (req, res) => {
+  res.json({ message: 'User profile' })
+})
 
-- ✅ `res.send`, `res.json`, `res.status`
+userRouter.get('/settings', (req, res) => {
+  res.json({ message: 'User settings' })
+})
 
-- ✅ Modular (with `.Router()`)
+app.use('/user', userRouter)
 
-- ✅ Optional async: use if you want
+app.start(3000, () => {
+  console.log('Vexa router example running on port 3000')
+})
+```
+
+---
+
+### 🔌 Features
+
+- ✅ Lightweight and flexible middleware  
+- ✅ Support for all HTTP methods (`GET`, `POST`, `PUT`, `DELETE`, etc.)  
+- ✅ File download with `res.sendFile()`  
+- ✅ Redirection with `res.redirect()`  
+- ✅ `req.query`, `req.params`, `req.body`  
+- ✅ Built-in `res.send`, `res.json`, `res.status`, `res.end`  
+- ✅ Modular routing with `Router()`  
+- ✅ Async optional – works with or without it  
 
 ---
 
@@ -69,7 +115,8 @@ app.start(3000, () => {
 
 ### 🛠️ Contribute
 
-Feel free to open issues or PRs. This project is made by devs who love simplicity.
+Feel free to open issues or PRs.  
+This project is made by devs who love simplicity.
 
 ---
 

@@ -1,9 +1,7 @@
-const url = require('url')
-
 function extendRequest(req) {
-  const parsedUrl = url.parse(req.url, true)
+  const parsedUrl = new URL(req.url, 'http://dummy-base.com') // Base dummy para parsing
   req.path = parsedUrl.pathname
-  req.query = parsedUrl.query
+  req.query = Object.fromEntries(parsedUrl.searchParams)
 }
 
 module.exports = { extendRequest }

@@ -1,31 +1,27 @@
 {
-  "name": "vexa",
-  "version": "0.1.0",
-  "description": "A minimalist and expressive web framework for Node.js, inspired by Express, but lighter and more elegant.",
+  "name": "vexa-http",
+  "version": "0.2.0",
+  "description": "A minimal and powerful HTTP framework to create APIs better than Express.",
   "main": "index.js",
-  "type": "commonjs",
   "keywords": [
     "framework",
     "http",
     "express",
+    "api",
+    "zest",
+    "vexa",
     "router",
-    "middleware",
-    "nodejs",
-    "web",
-    "vexa"
+    "minimal",
+    "middleware"
   ],
-  "scripts": {
-    "start": "node example/server.js",
-    "test": "echo \"No tests yet\""
-  },
+  "author": "AFK2 - TEAM",
+  "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/zest-lang/vexa.git"
+    "url": "git+https://github.com/zest-lang/vexa.git"
   },
   "bugs": {
-    "url": "https://github.com/seu-usuario/vexa/issues"
+    "url": "https://github.com/zest-lang/vexa/issues"
   },
-  "homepage": "https://github.com/zest-lang/vexa#readme",
-  "author": "AFK2-TEAM",
-  "license": "MIT"
+  "homepage": "https://github.com/zest-lang/vexa#readme"
 }

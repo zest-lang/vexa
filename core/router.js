@@ -12,6 +12,14 @@ function createRouter() {
       routes.push({ method: 'POST', path, handler })
       return router
     },
+    put(path, handler) {
+      routes.push({ method: 'PUT', path, handler })
+      return router
+    },
+    delete(path, handler) {
+      routes.push({ method: 'DELETE', path, handler })
+      return router
+    },
     handle: async function (req, res, next) {
       const matched = matchRouteFrom(routes, req.method, req.url)
       if (matched) {

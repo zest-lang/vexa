@@ -18,6 +18,10 @@ app.get('/', (req, res) => {
   res.json({ message: 'Hello, World!' })
 })
 
+app.get('/dashboard', (req, res) => {
+    res.sendFile('./index.html');
+});
+
 app.start(3000, () => {
   console.log('Vexa server running on port 3000')
 })
